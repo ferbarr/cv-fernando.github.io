@@ -34,3 +34,24 @@ form.addEventListener("submit", async (e) => {// Agregra evento al formulario de
     boton.disabled = false; //Habilitamos otra vez el boton
   }
 });
+
+const registrarVisita = async () => {
+  const fecha = new Date();
+  const fecha2 = fecha.toLocaleDateString("es-Es");
+
+  try {
+    await fetch(
+      //Realizar peticion
+      "https://curriculum-fer-default-rtdb.firebaseio.com/cv.json",
+      {
+        method: "POST", //Indicamos el metodo de la peticion
+        headers: {
+          "Content-Type": "application/json", //Indicamos el tipo de datos
+        },
+        body: JSON.stringify(fecha2), //Mandamos el valor del input en formato JSON
+      }
+    );
+  } catch (e) {
+    console.log(e);
+  }
+};
